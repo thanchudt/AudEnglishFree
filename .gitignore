@@ -1,0 +1,13 @@
+*.classpath
+*.project
+*.prefs
+*.sqlite3
+*.apk
+*.dex
+*.class
+*.jar
+*.cache
+*.png
+*.ap_
+*.properties
+*.mp3
