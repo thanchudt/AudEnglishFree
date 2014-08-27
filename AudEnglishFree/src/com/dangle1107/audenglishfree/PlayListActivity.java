@@ -6,6 +6,8 @@ import java.util.List;
 
 import com.dangle1107.audenglishlibrary.Lesson;
 import com.dangle1107.audenglishlibrary.LessonDataSource;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -24,11 +26,24 @@ public class PlayListActivity extends Activity {
 	private final static String LESSON_TITLE = "LESSON_TITLE";
 	
 	public final static long MAX_LESSON_ID = 11;
+	
+	private InterstitialAd interstitial;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.playlist);
 		
+		// Create the interstitial.
+	    interstitial = new InterstitialAd(this);
+	    interstitial.setAdUnitId("ca-app-pub-7967292479037053/9176042722");
+
+	    // Create ad request.
+	    AdRequest adRequest = new AdRequest.Builder().build();
+
+	    // Begin loading your interstitial.
+	    interstitial.loadAd(adRequest);
+	    
 		_lessonDataSource = new LessonDataSource(this);
 		_lessonDataSource.open();
 		lessonList = _lessonDataSource.getLessons(MAX_LESSON_ID);
@@ -66,4 +81,24 @@ public class PlayListActivity extends Activity {
 			}
 	    });	    	
 	}
+	
+	 // Invoke displayInterstitial() when you are ready to display an interstitial.
+	  public void displayInterstitial() {
+	    if (interstitial.isLoaded()) {
+	      interstitial.show();
+	    }
+	  }
+	  
+	  @Override
+	  public void onResume() {
+	    super.onResume();
+	    displayInterstitial();
+	  }
+
+	  @Override
+	  public void onPause() {
+		displayInterstitial();
+	    super.onPause();
+	  }
+	  	 
 }

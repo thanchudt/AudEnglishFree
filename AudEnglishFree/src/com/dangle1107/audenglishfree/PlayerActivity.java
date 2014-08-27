@@ -12,6 +12,8 @@ import com.dangle1107.audenglishlibrary.Sentence;
 import com.dangle1107.audenglishlibrary.SentenceComparator;
 import com.dangle1107.audenglishlibrary.SentenceDataSource;
 import com.dangle1107.audenglishlibrary.Utilities;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.AdRequest;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -26,6 +28,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -58,11 +62,38 @@ public class PlayerActivity extends Activity implements OnCompletionListener, Se
 	private MyBundle myBundle = null;		
 	private boolean isSeekTo = false;
 	private boolean isUpdateLyric = false;
+	
+	private AdView adView;
+	 /* Your ad unit id. Replace with your actual ad unit id. */
+	  private static final String AD_UNIT_ID = "ca-app-pub-7967292479037053/9921295525";
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.player);
 		
+		 // Create an ad.
+	    adView = new AdView(this);
+	    adView.setAdSize(com.google.android.gms.ads.AdSize.BANNER);
+	    adView.setAdUnitId(AD_UNIT_ID);
+	    
+	 // Add the AdView to the view hierarchy. The view will have no size
+	    // until the ad is loaded.
+	    //LinearLayout layout = (LinearLayout) findViewById(R.id.player_header_bg);
+	    RelativeLayout layout = (RelativeLayout) findViewById(R.id.mainlayout);
+	    layout.addView(adView);
+	    
+	    // Create an ad request. Check logcat output for the hashed device ID to
+	    // get test ads on a physical device.
+	    AdRequest adRequest = new AdRequest.Builder()
+	        .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+	        .build();
+	    // Start loading the ad in the background.
+	    adView.loadAd(adRequest);
+	    
+	    // Start loading the ad in the background.
+	    adView.loadAd(adRequest);
+	    
 		_audioDataSource = new LessonDataSource(this);
 		_audioDataSource.open();
 		audioList = _audioDataSource.getLessons(PlayListActivity.MAX_LESSON_ID);
@@ -304,6 +335,7 @@ public class PlayerActivity extends Activity implements OnCompletionListener, Se
 			
 			@Override
 			public void onClick(View arg0) {
+				_player.pause();
 				Intent i = new Intent(getApplicationContext(), PlayListActivity.class);
 				startActivityForResult(i, 100);			
 			}
@@ -508,7 +540,11 @@ public class PlayerActivity extends Activity implements OnCompletionListener, Se
 	
 	@Override
 	public void onDestroy(){
-	 super.onDestroy();
+		// Destroy the AdView.
+		if (adView != null) {
+		  adView.destroy();
+		}	    
+		super.onDestroy();
 	 	mHandler.removeCallbacks(mUpdateTimeTask);
 	 	resetPlayer();
 	 	_player.release();
@@ -561,5 +597,22 @@ public class PlayerActivity extends Activity implements OnCompletionListener, Se
 		_player.start();
 		// Changing button image to pause button
 		btnPlay.setImageResource(R.drawable.btn_pause);
-	}	
+	}
+	
+	@Override
+	  public void onResume() {
+	    super.onResume();
+	    if (adView != null) {
+	      adView.resume();
+	    }
+	  }
+
+	  @Override
+	  public void onPause() {
+	    if (adView != null) {
+	      adView.pause();
+	    }
+	    super.onPause();
+	  }
+
 }
