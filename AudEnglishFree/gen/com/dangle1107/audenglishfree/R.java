@@ -498,15 +498,15 @@ containing a value of this type.
     }
     public static final class id {
         public static final int book_now=0x7f080010;
-        public static final int btnBackward=0x7f08001d;
-        public static final int btnForward=0x7f08001f;
-        public static final int btnNext=0x7f080020;
-        public static final int btnPlay=0x7f08001e;
+        public static final int btnBackward=0x7f08001e;
+        public static final int btnForward=0x7f080020;
+        public static final int btnNext=0x7f080021;
+        public static final int btnPlay=0x7f08001f;
         public static final int btnPlaylist=0x7f080017;
-        public static final int btnPrevious=0x7f08001c;
-        public static final int btnRepeat=0x7f080024;
-        public static final int btnShuffle=0x7f080025;
-        public static final int btnSpeak=0x7f080023;
+        public static final int btnPrevious=0x7f08001d;
+        public static final int btnRepeat=0x7f080025;
+        public static final int btnShuffle=0x7f080026;
+        public static final int btnSpeak=0x7f080024;
         public static final int buyButton=0x7f08000a;
         public static final int buy_now=0x7f08000f;
         public static final int buy_with_google=0x7f08000e;
@@ -515,29 +515,30 @@ containing a value of this type.
         public static final int holo_dark=0x7f080005;
         public static final int holo_light=0x7f080006;
         public static final int hybrid=0x7f080004;
-        public static final int lvSong=0x7f080029;
+        public static final int lvSong=0x7f08002a;
         public static final int mainlayout=0x7f080014;
         public static final int match_parent=0x7f08000c;
         public static final int monochrome=0x7f080013;
         public static final int none=0x7f080000;
         public static final int normal=0x7f080001;
-        public static final int player_buttons=0x7f08001b;
-        public static final int player_footer_bg=0x7f08001a;
+        public static final int overlay=0x7f08001a;
+        public static final int player_buttons=0x7f08001c;
+        public static final int player_footer_bg=0x7f08001b;
         public static final int player_header_bg=0x7f080015;
-        public static final int player_repeat=0x7f080027;
+        public static final int player_repeat=0x7f080028;
         public static final int production=0x7f080007;
         public static final int sandbox=0x7f080008;
         public static final int satellite=0x7f080002;
         public static final int selectionDetails=0x7f08000b;
-        public static final int songCurrentDurationLabel=0x7f080022;
+        public static final int songCurrentDurationLabel=0x7f080023;
         public static final int songImage=0x7f080019;
-        public static final int songProgressBar=0x7f080021;
+        public static final int songProgressBar=0x7f080022;
         public static final int songThumbnail=0x7f080018;
         public static final int songTitle=0x7f080016;
-        public static final int songTotalDurationLabel=0x7f080026;
+        public static final int songTotalDurationLabel=0x7f080027;
         public static final int strict_sandbox=0x7f080009;
         public static final int terrain=0x7f080003;
-        public static final int timerDisplay=0x7f080028;
+        public static final int timerDisplay=0x7f080029;
         public static final int wrap_content=0x7f08000d;
     }
     public static final class integer {
@@ -548,8 +549,9 @@ containing a value of this type.
         public static final int bg_player_header=0x7f030001;
         public static final int grounded_corner=0x7f030002;
         public static final int player=0x7f030003;
-        public static final int playlist=0x7f030004;
-        public static final int playlist_item=0x7f030005;
+        public static final int player_20140901=0x7f030004;
+        public static final int playlist=0x7f030005;
+        public static final int playlist_item=0x7f030006;
     }
     public static final class raw {
         public static final int i00001_cd1_track2_con1_tennis=0x7f040000;

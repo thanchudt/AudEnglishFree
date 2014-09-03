@@ -33,7 +33,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 
-public class PlayerActivity extends Activity implements OnCompletionListener, SeekBar.OnSeekBarChangeListener{
+public class Player_20140901Activity extends Activity implements OnCompletionListener, SeekBar.OnSeekBarChangeListener{
 	private ImageButton btnPlay;
 	private ImageButton btnForward;
 	private ImageButton btnBackward;
@@ -47,7 +47,7 @@ public class PlayerActivity extends Activity implements OnCompletionListener, Se
 	private TextView songTitleLabel;
 	private TextView songCurrentDurationLabel;
 	private TextView songTotalDurationLabel;
-	private ImageView songImage;
+	private TextView songImage;
 	// Media Player
 	private  MediaPlayer _player = null;
 		
@@ -69,7 +69,7 @@ public class PlayerActivity extends Activity implements OnCompletionListener, Se
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.player);
+		setContentView(R.layout.player_20140901);
 		
 		 // Create an ad.
 	    adView = new AdView(this);
@@ -112,7 +112,7 @@ public class PlayerActivity extends Activity implements OnCompletionListener, Se
 		songTitleLabel = (TextView) findViewById(R.id.songTitle);
 		songCurrentDurationLabel = (TextView) findViewById(R.id.songCurrentDurationLabel);
 		songTotalDurationLabel = (TextView) findViewById(R.id.songTotalDurationLabel);
-		songImage = (ImageView) findViewById(R.id.songImage);
+		songImage = (TextView) findViewById(R.id.songImage);
 		
 		// Mediaplayer
 		_player = new MediaPlayer();
@@ -462,7 +462,8 @@ public class PlayerActivity extends Activity implements OnCompletionListener, Se
 		
 	private void updateLyric(long currentDuration){
 		//lyricLabel.setText("");		
-		songImage.setImageResource(R.drawable.adele);
+		//songImage.setImageResource(R.drawable.adele);
+		//songImage.setBackground(R.drawable.adele);
 		myBundle.lyricIndex = findLyric(currentDuration);
 		showLyric(myBundle.lyricIndex);
 	}
@@ -492,7 +493,8 @@ public class PlayerActivity extends Activity implements OnCompletionListener, Se
 			try {
 				int imageResource = getResources().getIdentifier(path, null, getPackageName());
 				Drawable res = getResources().getDrawable(imageResource);		
-				songImage.setImageDrawable(res);
+				//songImage.setImageDrawable(res);
+				songImage.setBackground(res);
 			} catch (NotFoundException e) {
 				// TODO Auto-generated catch block
 				Log.i(this.getClass().toString(), path);
